@@ -1,0 +1,92 @@
+#thankshelene bot
+
+import json
+import requests
+import time
+import random
+
+TOKEN = '877983787:AAFnqfoHtEAPFM74kr92uNPG8MSlIhvuBU4'
+URL = "https://api.telegram.org/bot{}/".format(TOKEN)
+
+from telegram.ext import Updater, CommandHandler
+
+def starts(bot, update):
+  update.message.reply_text("My sole purpose is to help you thank Helene, our vegetable queen!")
+
+def thankshelene(bot,update):
+  update.message.reply_text("Thanks Helene, our vegetable queen!")
+
+def nothankshelene(bot,update):
+  update.message.reply_text("Thanks Helene!")
+
+def blamehelene(bot,update):
+  update.message.reply_text("Walao eh Helene!")
+
+def thanksthankshelenebot(bot,update):
+  update.message.reply_text("You're welcome!\nRemember to like, comment, subscribe, and donate on Patreon!")
+
+#def whoiscallingameens(bot,update):
+  #update.message.reply_text(random.choice(namelist) + " will be calling Ameens!")
+
+#namelist = ["Elgin", "Helene", "Zheng Jie", "Rachneo", "Samuel", "Ken"]
+
+def announcement(bot,update):
+  update.message.reply_text("Helene is hungry!")
+
+def samuelsays(bot,update):
+  update.message.reply_text(random.choice(quotes))
+
+quotes = ["Why are you like this?", "I'm an idiot sandwich!", "I can't believe you've done this!", "It do be like that sometimes.", "It's time to stop.", "Where are your parents??", "Who invented Python?", "Who invented math?", "Who invented integration?", "Fuck you", "Why are you here?", "Go home!"]
+
+def moreinfo(bot,update):
+  update.message.reply_text("Full-fledged thankshelene bot coming soonTM \n(hopefully before Sem 2 starts)")
+
+def list(bot,update):
+  update.message.reply_text("Currently available commands: \n /starts \n /thankshelene \n /nothankshelene \n /blamehelene \n /thanksthankshelenebot \n /announcement \n /samuelsays \n /moreinfo \n /list")
+
+
+def main():
+  # Create Updater object and attach dispatcher to it
+  updater = Updater(TOKEN)
+  dispatcher = updater.dispatcher
+  print("Bot is alive!")
+
+  # Add 'start' command handler to dispatcher
+  starts_handler = CommandHandler('start',starts)
+  dispatcher.add_handler(starts_handler)
+
+  thankshelene_handler = CommandHandler('thankshelene',thankshelene)
+  dispatcher.add_handler(thankshelene_handler)
+
+  nothankshelene_handler = CommandHandler('nothankshelene',nothankshelene)
+  dispatcher.add_handler(nothankshelene_handler)
+
+  blamehelene_handler = CommandHandler('blamehelene',blamehelene)
+  dispatcher.add_handler(blamehelene_handler)
+
+  thanksthankshelenebot_handler = CommandHandler('thanksthankshelenebot',thanksthankshelenebot)
+  dispatcher.add_handler(thanksthankshelenebot_handler)
+
+  #whoiscallingameens_handler = CommandHandler('whoiscallingameens',whoiscallingameens)
+  #dispatcher.add_handler(whoiscallingameens_handler)
+
+  announcement_handler = CommandHandler('announcement',announcement)
+  dispatcher.add_handler(announcement_handler)
+
+  samuelsays_handler = CommandHandler('samuelsays',samuelsays)
+  dispatcher.add_handler(samuelsays_handler)
+
+  moreinfo_handler = CommandHandler('moreinfo',moreinfo)
+  dispatcher.add_handler(moreinfo_handler)
+
+  list_handler = CommandHandler('list',list)
+  dispatcher.add_handler(list_handler)
+
+  # Start the bot
+  updater.start_polling()
+
+  # Run the bot until you press Ctrl-C
+  updater.idle()
+
+if __name__ == '__main__':
+  main()
