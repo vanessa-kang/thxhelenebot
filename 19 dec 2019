@@ -5,7 +5,7 @@ import requests
 import time
 import random
 
-TOKEN = '877983787:AAFnqfoHtEAPFM74kr92uNPG8MSlIhvuBU4'
+TOKEN = '' #insert token here
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
 from telegram.ext import Updater, CommandHandler
